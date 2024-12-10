@@ -39,13 +39,12 @@ if($wordpress) {
     require_once PAGEPATH . 'wp-load.php';
 }
 
+if(file_exists(DOCROOT . '/funktionen/funktionen.php')) {
+    require_once DOCROOT . '/funktionen/funktionen.php';
+}
 
-$buffer     = '';
-$path = DOCROOT.'/index/static';
-require_once DOCROOT . '/funktionen/funktionen.php';
 
-
-    ob_start();
+   ob_start();
 
 if ($wartung) {
     require_once('maintenance.php');
@@ -53,7 +52,7 @@ if ($wartung) {
 
     if (defined('ENVIRONMENT')) {
         switch (ENVIRONMENT) {
-            case 'development':
+            case 'dev':
                 error_reporting(E_ALL);
                 break;
             case 'release':
